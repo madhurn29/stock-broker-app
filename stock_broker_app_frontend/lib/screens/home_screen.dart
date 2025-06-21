@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome, ${appState.selectedBroker}"),
+        title: Text("Welcome, ${appState.loggedInUserName}"),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),

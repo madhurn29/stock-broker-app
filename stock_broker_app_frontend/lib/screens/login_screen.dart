@@ -38,7 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
     switch (response) {
       case LoginStatus.success:
         // showSnackbar("Logged in Successfully");
-        Provider.of<AppState>(context, listen: false).login(selectedBroker!);
+        Provider.of<AppState>(
+          context,
+          listen: false,
+        ).login(usernameController.text.trim(), selectedBroker!);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
