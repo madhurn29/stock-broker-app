@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stock_broker_app_frontend/constants/app_theme.dart';
+import 'package:stock_broker_app_frontend/screens/splash_screen.dart';
+import 'package:stock_broker_app_frontend/state/app_state.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,36 +14,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppState>(create: (context) => AppState()),
+      ],
+      child: MaterialApp(
+        title: 'Stock Broker App',
+        theme: appTheme,
+        home: SplashScreen(),
       ),
-      home: const MyHomePage(title: ''),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Container(),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
