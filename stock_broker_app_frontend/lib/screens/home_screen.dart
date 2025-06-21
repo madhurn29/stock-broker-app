@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_broker_app_frontend/screens/holding_screen.dart';
 import 'package:stock_broker_app_frontend/screens/login_screen.dart';
+import 'package:stock_broker_app_frontend/screens/orderbook_screen.dart';
+import 'package:stock_broker_app_frontend/screens/positions_screen.dart';
 import '../state/app_state.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _screens = [
+    HoldingsScreen(),
+    OrderbookScreen(),
+    PositionsScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() => _selectedIndex = index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +46,22 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text("Bottom Navigation & Screens Coming Next"),
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.indigo,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pie_chart),
+            label: 'Holdings',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Orderbook'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.trending_up),
+            label: 'Positions',
+          ),
+        ],
       ),
     );
   }
