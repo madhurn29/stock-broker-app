@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
+import 'package:stock_broker_app_frontend/utils/order_pad.dart';
 
 class HoldingsScreen extends StatelessWidget {
   const HoldingsScreen({super.key});
@@ -19,10 +20,15 @@ class HoldingsScreen extends StatelessWidget {
       itemCount: holdings.length,
       itemBuilder: (context, index) {
         final stock = holdings[index];
-        return ListTile(
-          title: Text(stock.name),
-          subtitle: Text("Qty: ${stock.quantity} | Avg: ₹${stock.avgPrice}"),
-          trailing: Text("Value: ₹${stock.quantity * stock.avgPrice}"),
+        return GestureDetector(
+          onTap: () {
+            showOrderPadModal(context, stock); // or 'sell'
+          },
+          child: ListTile(
+            title: Text(stock.name),
+            subtitle: Text("Qty: ${stock.quantity} | Avg: ₹${stock.avgPrice}"),
+            trailing: Text("Value: ₹${stock.quantity * stock.avgPrice}"),
+          ),
         );
       },
     );
