@@ -3,18 +3,19 @@ import 'package:stock_broker_app_frontend/models/order_model.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
 
 class OrderbookProvider extends ChangeNotifier {
-  List<Order> orders = [];
-  bool isLoading = true;
+  List<Order> _orders = [];
 
-  OrderbookProvider() {
-    loadOrders();
-  }
+  List<Order> get orders => _orders;
 
-  Future<void> loadOrders() async {
-    isLoading = true;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  Future<void> fetchOrders(username) async {
+    _isLoading = true;
     notifyListeners();
-    orders = await MockApiService.getOrderbook();
-    isLoading = false;
+
+    _orders = await MockApiService.getOrderbook(username);
+
+    _isLoading = false;
     notifyListeners();
   }
 }

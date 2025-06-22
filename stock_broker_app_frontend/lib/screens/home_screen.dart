@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static const List<Widget> _screens = [
     HoldingsScreen(),
-    OrderbookScreen(),
+    OrderBookScreen(),
     PositionsScreen(),
   ];
 

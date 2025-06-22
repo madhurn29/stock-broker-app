@@ -25,9 +25,11 @@ final ThemeData appTheme = ThemeData(
     elevation: 2,
   ),
   textTheme: const TextTheme(
+    titleLarge: TextStyle(color: AppColors.textPrimary, fontSize: 22),
+    titleMedium: TextStyle(color: AppColors.textPrimary, fontSize: 20),
+    titleSmall: TextStyle(color: AppColors.textPrimary, fontSize: 18),
     bodyLarge: TextStyle(color: AppColors.textPrimary, fontSize: 16),
     bodyMedium: TextStyle(color: AppColors.textSecondary),
-    titleLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: AppColors.primary,

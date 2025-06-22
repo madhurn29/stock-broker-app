@@ -33,6 +33,12 @@ class MockDatabase {
           entryPrice: 1580,
           openedAt: DateTime.now().subtract(const Duration(days: 1)),
         ),
+        Position(
+          stock: StockDB.getBySymbol("HDFC"),
+          quantity: 7,
+          entryPrice: 1580,
+          openedAt: DateTime.now().subtract(const Duration(days: 1)),
+        ),
       ],
       orders: [
         Order(
@@ -40,7 +46,18 @@ class MockDatabase {
           stock: StockDB.getBySymbol("TCS"),
           type: "buy",
           quantity: 10,
+          buyPrice: 3425,
           price: 3425,
+          status: "completed",
+          placedAt: DateTime.now().subtract(const Duration(days: 4)),
+        ),
+        Order(
+          id: "ORD1001",
+          stock: StockDB.getBySymbol("ZMT"),
+          type: "sell",
+          quantity: 10,
+          buyPrice: 100,
+          price: 105,
           status: "completed",
           placedAt: DateTime.now().subtract(const Duration(days: 4)),
         ),

@@ -5,19 +5,8 @@ import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import 'package:stock_broker_app_frontend/utils/order_pad.dart';
 
-class HoldingsScreen extends StatefulWidget {
+class HoldingsScreen extends StatelessWidget {
   const HoldingsScreen({super.key});
-
-  @override
-  State<HoldingsScreen> createState() => _HoldingsScreenState();
-}
-
-class _HoldingsScreenState extends State<HoldingsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // Provider.of<HoldingsProvider>(context, listen: false).fetchHoldings();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +27,7 @@ class _HoldingsScreenState extends State<HoldingsScreen> {
                       showOrderPadBottomSheet(context, holding.stock);
                     },
                     child: HoldingCard(holding: holding),
-                  ); // build this widget
+                  );
                 },
               ),
             ),
@@ -145,7 +134,7 @@ class HoldingCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${isProfit ? '+' : '-'}${holding.pnlPercent.abs().toStringAsFixed(2)}%",
+                      " (${isProfit ? '+' : '-'}${holding.pnlPercent.abs().toStringAsFixed(2)}%)",
                       style: TextStyle(color: pnlColor, fontSize: 12),
                     ),
                   ],

@@ -74,8 +74,34 @@ class StockDB {
       dayChange: 9.2,
       dayChangePercent: 0.55,
     ),
- 
-    // Add more stocks below as needed...
+    Stock(
+      symbol: "WPO",
+      name: "Wipro",
+      currentPrice: 1685.5,
+      dayChange: 9.2,
+      dayChangePercent: 0.55,
+    ),
+    Stock(
+      symbol: "ITC",
+      name: "Indian Tobacco Company",
+      currentPrice: 168.5,
+      dayChange: 9.2,
+      dayChangePercent: 0.55,
+    ),
+    Stock(
+      symbol: "ZMT",
+      name: "Zomato",
+      currentPrice: 148.5,
+      dayChange: 9.2,
+      dayChangePercent: 0.55,
+    ),
+    Stock(
+      symbol: "LIC",
+      name: "Life Insurance Company",
+      currentPrice: 248.5,
+      dayChange: 9.2,
+      dayChangePercent: 0.55,
+    ),
   ];
 
   /// Get all stocks
