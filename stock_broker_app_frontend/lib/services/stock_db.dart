@@ -74,6 +74,7 @@ class StockDB {
       dayChange: 9.2,
       dayChangePercent: 0.55,
     ),
+ 
     // Add more stocks below as needed...
   ];
 
@@ -84,7 +85,6 @@ class StockDB {
   static Stock getBySymbol(String symbol) {
     return _allStocks.firstWhere(
       (s) => s.symbol.toUpperCase() == symbol.toUpperCase(),
-      orElse: () => throw Exception("Stock not found: $symbol"),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import '../state/app_state.dart';
 import 'login_screen.dart';
 import 'home_screen.dart';
@@ -24,6 +25,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Add a delay for visual splash effect (optional)
     await Future.delayed(const Duration(seconds: 2));
+
+    if (appState.isLoggedIn) {
+      if (!mounted) return;
+      Provider.of<HoldingsProvider>(
+        context,
+        listen: false,
+      ).fetchHoldings(appState.loggedInUserName);
+    }
 
     if (!mounted) return;
 

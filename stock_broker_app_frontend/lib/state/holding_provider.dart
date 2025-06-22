@@ -46,18 +46,14 @@ class HoldingsProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> fetchHoldings() async {
+  Future<void> fetchHoldings(username) async {
     _isLoading = true;
     notifyListeners();
 
-    _holdings = await MockApiService.getHoldings();
+    _holdings = await MockApiService.getHoldings(username);
 
     _isLoading = false;
     notifyListeners();
-  }
-
-  HoldingsProvider() {
-    fetchHoldings();
   }
 
   // Summary Calculations for Header

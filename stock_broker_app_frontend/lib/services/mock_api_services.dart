@@ -2,55 +2,37 @@ import 'dart:math';
 
 import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/models/order_model.dart';
-import 'package:stock_broker_app_frontend/models/position_model.dart';
+import 'package:stock_broker_app_frontend/models/user_model.dart';
 import 'package:stock_broker_app_frontend/services/stock_db.dart';
+import 'package:stock_broker_app_frontend/services/user_date_db.dart';
 
 enum LoginStatus { success, invalid, error }
 
 class MockApiService {
   static Future<LoginStatus> login(
     String broker,
-    String user,
+    String username,
     String pass,
   ) async {
     await Future.delayed(const Duration(seconds: 1));
 
-    if (user == "demo" && pass == "123") {
+    User? user = MockDatabase.getUserById(username);
+
+    if (user != null) {
       return LoginStatus.success;
     }
-    if (user.isEmpty || pass.isEmpty || user.length < 3) {
-      return LoginStatus.invalid;
-    }
 
-    return LoginStatus.error; // simulate server error randomly
+    return LoginStatus.invalid;
+
+    // simulate server error randomly
   }
 
-  static Future<List<Holding>> getHoldings() async {
+  static Future<List<Holding>> getHoldings(username) async {
     await Future.delayed(const Duration(milliseconds: 800));
 
-    return [
-      Holding(
-        stock: StockDB.getBySymbol("TCS"),
-        firstAcquiredAt: DateTime.now().subtract(const Duration(days: 4)),
-        lots: [
-          Lot(quantity: 6, pricePerShare: 3350),
-          Lot(quantity: 4, pricePerShare: 3450),
-        ],
-      ),
-      Holding(
-        stock: StockDB.getBySymbol("INFY"),
-        firstAcquiredAt: DateTime.now().subtract(const Duration(days: 5)),
-        lots: [
-          Lot(quantity: 10, pricePerShare: 1460),
-          Lot(quantity: 10, pricePerShare: 1500),
-        ],
-      ),
-      Holding(
-        stock: StockDB.getBySymbol("HDFC"),
-        firstAcquiredAt: DateTime.now().subtract(const Duration(days: 6)),
-        lots: [Lot(quantity: 15, pricePerShare: 1600)],
-      ),
-    ];
+    User? user = MockDatabase.getUserById(username);
+
+    return user?.holdings ?? [];
   }
 
   /// Holdings: Settled stocks, shown in holdings tab
@@ -111,59 +93,59 @@ class MockApiService {
     return [
       Order(
         id: "ORD001",
-        stockSymbol: "TCS",
-        type: OrderType.buy,
+        stock: StockDB.getBySymbol("TCS"),
+        type: "buy",
         quantity: 5,
         price: 3450,
         placedAt: DateTime.now().subtract(const Duration(hours: 1)),
-        status: OrderStatus.completed,
+        status: "completed",
       ),
       Order(
         id: "ORD002",
-        stockSymbol: "INFY",
-        type: OrderType.sell,
+        stock: StockDB.getBySymbol("INFY"),
+        type: "sell",
         quantity: 10,
         price: 1500,
         placedAt: DateTime.now().subtract(const Duration(days: 1)),
-        status: OrderStatus.completed,
+        status: "completed",
       ),
       Order(
         id: "ORD003",
-        stockSymbol: "HDFC",
-        type: OrderType.buy,
+        stock: StockDB.getBySymbol("HDFC"),
+        type: "buy",
         quantity: 7,
         price: 1580,
         placedAt: DateTime.now().subtract(const Duration(hours: 4)),
-        status: OrderStatus.pending,
+        status: "pending",
       ),
     ];
   }
 
   /// Positions: Active trades not yet settled
-  static Future<List<Position>> getPositions() async {
-    await Future.delayed(const Duration(milliseconds: 800));
+  // static Future<List<Position>> getPositions() async {
+  //   await Future.delayed(const Duration(milliseconds: 800));
 
-    return [
-      Position(
-        stockSymbol: "RELIANCE",
-        quantity: 8,
-        entryPrice: 2400,
-        openedAt: DateTime.now().subtract(const Duration(days: 1)),
-      ),
-      Position(
-        stockSymbol: "ITC",
-        quantity: 12,
-        entryPrice: 460,
-        openedAt: DateTime.now().subtract(const Duration(hours: 5)),
-      ),
-      Position(
-        stockSymbol: "ZOMATO",
-        quantity: 30,
-        entryPrice: 140,
-        openedAt: DateTime.now().subtract(const Duration(hours: 3)),
-      ),
-    ];
-  }
+  //   return [
+  //     Position(
+  //       stockSymbol: "RELIANCE",
+  //       quantity: 8,
+  //       entryPrice: 2400,
+  //       openedAt: DateTime.now().subtract(const Duration(days: 1)),
+  //     ),
+  //     Position(
+  //       stockSymbol: "ITC",
+  //       quantity: 12,
+  //       entryPrice: 460,
+  //       openedAt: DateTime.now().subtract(const Duration(hours: 5)),
+  //     ),
+  //     Position(
+  //       stockSymbol: "ZOMATO",
+  //       quantity: 30,
+  //       entryPrice: 140,
+  //       openedAt: DateTime.now().subtract(const Duration(hours: 3)),
+  //     ),
+  //   ];
+  // }
 
   // static Future<List<Stock>> getHoldings() async {
   //   await Future.delayed(const Duration(milliseconds: 800));

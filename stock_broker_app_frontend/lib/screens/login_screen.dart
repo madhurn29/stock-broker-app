@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_broker_app_frontend/screens/home_screen.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
+import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import '../state/app_state.dart';
 import '../constants/app_theme.dart';
 
@@ -41,6 +42,12 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           listen: false,
         ).login(usernameController.text.trim(), selectedBroker!);
+
+        Provider.of<HoldingsProvider>(
+          context,
+          listen: false,
+        ).fetchHoldings(usernameController.text.trim());
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -48,18 +55,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
         break;
       case LoginStatus.invalid:
-        showSnackbar("Invalid credentials. Try again.");
+        showSnackbar("Invalid credentials. Try again.", isError: true);
         break;
       case LoginStatus.error:
-        showSnackbar("Server error. Please try again later.");
+        showSnackbar("Server error. Please try again later.", isError: true);
         break;
     }
   }
 
-  void showSnackbar(String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+  void showSnackbar(String message, {bool isError = false}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? AppColors.sellRed : null,
+      ),
+    );
   }
 
   @override

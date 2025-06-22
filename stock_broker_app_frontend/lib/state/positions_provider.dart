@@ -13,7 +13,7 @@ class PositionsProvider extends ChangeNotifier {
   Future<void> loadPositions() async {
     isLoading = true;
     notifyListeners();
-    positions = await MockApiService.getPositions();
+    // positions = await MockApiService.getPositions();
     isLoading = false;
     notifyListeners();
   }

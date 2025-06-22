@@ -12,18 +12,40 @@
 //   });
 // }
 
+// class Position {
+//   final String stockSymbol;
+//   final int quantity;
+//   final double entryPrice;
+//   final DateTime openedAt;
+
+//   Position({
+//     required this.stockSymbol,
+//     required this.quantity,
+//     required this.entryPrice,
+//     required this.openedAt,
+//     required stock,
+//   });
+// }
+
+import 'package:stock_broker_app_frontend/models/stock_model.dart';
+
 class Position {
-  final String stockSymbol;
+  final Stock stock;
   final int quantity;
   final double entryPrice;
   final DateTime openedAt;
 
   Position({
-    required this.stockSymbol,
+    required this.stock,
     required this.quantity,
     required this.entryPrice,
     required this.openedAt,
   });
 
-  // double get pnl => (StockDB.getPrice(stockSymbol) - entryPrice) * quantity;
+  double get currentValue => stock.currentPrice * quantity;
+
+  double get pnl => currentValue - (entryPrice * quantity);
+
+  double get pnlPercent =>
+      (entryPrice * quantity) == 0 ? 0 : (pnl / (entryPrice * quantity)) * 100;
 }
