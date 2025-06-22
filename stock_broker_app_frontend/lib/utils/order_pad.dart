@@ -1,5 +1,7 @@
 // lib/utils/order_pad.dart
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:stock_broker_app_frontend/models/stock_model.dart';
 import 'package:stock_broker_app_frontend/widgets/order_pad_bottom_sheet.dart';
@@ -8,9 +10,19 @@ void showOrderPadBottomSheet(BuildContext context, Stock stock) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
+
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
-    builder: (ctx) => OrderPadBottomSheet(stock: stock),
+    builder:
+        (ctx) => BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: OrderPadBottomSheet(stock: stock,),
+          ),
+        ),
   );
 }

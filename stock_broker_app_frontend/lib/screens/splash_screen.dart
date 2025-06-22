@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
+import 'package:stock_broker_app_frontend/state/positions_provider.dart';
 import '../state/app_state.dart';
 import 'login_screen.dart';
 import 'home_screen.dart';
@@ -38,6 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         listen: false,
       ).fetchOrders(appState.loggedInUserName);
+
+      Provider.of<PositionsProvider>(
+        context,
+        listen: false,
+      ).fetchPositions(appState.loggedInUserName);
     }
 
     if (!mounted) return;

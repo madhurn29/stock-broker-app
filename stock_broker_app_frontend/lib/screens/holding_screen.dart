@@ -101,77 +101,82 @@ class HoldingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isProfit = holding.pnl >= 0;
     final pnlColor = isProfit ? AppColors.buyGreen : AppColors.sellRed;
+    final ltpColor =
+        holding.stock.dayChange >= 0 ? AppColors.buyGreen : AppColors.sellRed;
 
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Row: Stock Name + P&L
+            // 🔰 Header Row: Stock Avatar + Name + PNL
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Text(
-                    "${holding.stock.name} (${holding.stock.symbol})",
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ),
                 Row(
+                  children: [
+                    _stockSymbolCircle(holding.stock.symbol),
+                    const SizedBox(width: 10),
+                    Text(
+                      holding.stock.name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       "${isProfit ? '+' : '-'}₹${holding.pnl.abs().toStringAsFixed(2)}",
                       style: TextStyle(
-                        color: pnlColor,
                         fontWeight: FontWeight.bold,
+                        color: pnlColor,
                         fontSize: 14,
                       ),
                     ),
                     Text(
-                      " (${isProfit ? '+' : '-'}${holding.pnlPercent.abs().toStringAsFixed(2)}%)",
-                      style: TextStyle(color: pnlColor, fontSize: 12),
+                      "(${isProfit ? '+' : '-'}${holding.pnlPercent.abs().toStringAsFixed(2)}%)",
+                      style: TextStyle(fontSize: 12, color: pnlColor),
                     ),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            // Second Row: Qty | Avg Price | LTP
+
+            const SizedBox(height: 10),
+
+            // Qty | Avg Price | LTP
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "Qty: ${holding.totalQty}",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Text(" | ", style: Theme.of(context).textTheme.bodySmall),
-                    Text(
-                      "Avg: ₹${holding.avgPrice.toStringAsFixed(2)}",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
+                Text(
+                  "Qty: ${holding.totalQty}",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                Text(
+                  "Avg: ₹${holding.avgPrice.toStringAsFixed(2)}",
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
                   "LTP: ₹${holding.stock.currentPrice.toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color:
-                        holding.stock.dayChange >= 0
-                            ? AppColors.buyGreen
-                            : AppColors.sellRed,
+                    color: ltpColor,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            // Third Row: Invested | Current Value
+
+            const SizedBox(height: 10),
+
+            // Invested | Current Value
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -186,6 +191,20 @@ class HoldingCard extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _stockSymbolCircle(String symbol) {
+    return CircleAvatar(
+      radius: 16,
+      backgroundColor: Colors.blueGrey.shade50,
+      child: Text(
+        symbol.characters.first.toUpperCase(),
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.blueGrey,
         ),
       ),
     );

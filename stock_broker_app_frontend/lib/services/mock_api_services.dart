@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/models/order_model.dart';
+import 'package:stock_broker_app_frontend/models/position_model.dart';
 import 'package:stock_broker_app_frontend/models/user_model.dart';
 import 'package:stock_broker_app_frontend/services/user_date_db.dart';
 
@@ -15,7 +16,7 @@ class MockApiService {
   ) async {
     await Future.delayed(const Duration(seconds: 1));
 
-    User? user = MockDatabase.getUserById(username);
+    User? user = MockDatabase.getUserByUserName(username);
 
     if (user != null) {
       return LoginStatus.success;
@@ -28,87 +29,21 @@ class MockApiService {
 
   static Future<List<Holding>> getHoldings(username) async {
     await Future.delayed(const Duration(milliseconds: 800));
-
-    User? user = MockDatabase.getUserById(username);
-
+    User? user = MockDatabase.getUserByUserName(username);
     return user?.holdings ?? [];
   }
 
   static Future<List<Order>> getOrderbook(username) async {
     await Future.delayed(const Duration(milliseconds: 800));
-
-    User? user = MockDatabase.getUserById(username);
-
+    User? user = MockDatabase.getUserByUserName(username);
     return user?.orders ?? [];
   }
 
-  /// Positions: Active trades not yet settled
-  // static Future<List<Position>> getPositions() async {
-  //   await Future.delayed(const Duration(milliseconds: 800));
-
-  //   return [
-  //     Position(
-  //       stockSymbol: "RELIANCE",
-  //       quantity: 8,
-  //       entryPrice: 2400,
-  //       openedAt: DateTime.now().subtract(const Duration(days: 1)),
-  //     ),
-  //     Position(
-  //       stockSymbol: "ITC",
-  //       quantity: 12,
-  //       entryPrice: 460,
-  //       openedAt: DateTime.now().subtract(const Duration(hours: 5)),
-  //     ),
-  //     Position(
-  //       stockSymbol: "ZOMATO",
-  //       quantity: 30,
-  //       entryPrice: 140,
-  //       openedAt: DateTime.now().subtract(const Duration(hours: 3)),
-  //     ),
-  //   ];
-  // }
-
-  // static Future<List<Stock>> getHoldings() async {
-  //   await Future.delayed(const Duration(milliseconds: 800));
-  //   return [
-  //     Stock(name: "TCS", quantity: 10, avgPrice: 3400),
-  //     Stock(name: "Infosys", quantity: 20, avgPrice: 1480),
-  //     Stock(name: "HDFC Bank", quantity: 15, avgPrice: 1600),
-  //   ];
-  // }
-
-  // static Future<List<Order>> getOrderbook() async {
-  //   await Future.delayed(const Duration(milliseconds: 800));
-  //   return [
-  //     Order(stockName: "TCS", quantity: 5, price: 3450, type: "buy"),
-  //     Order(stockName: "Infosys", quantity: 10, price: 1500, type: "sell"),
-  //     Order(stockName: "HDFC Bank", quantity: 7, price: 1580, type: "buy"),
-  //   ];
-  // }
-
-  // static Future<List<Position>> getPositions() async {
-  //   await Future.delayed(const Duration(milliseconds: 800));
-  //   return [
-  //     Position(
-  //       stockName: "Reliance",
-  //       quantity: 8,
-  //       entryPrice: 2400,
-  //       pnl: _randomPNL(),
-  //     ),
-  //     Position(
-  //       stockName: "ITC",
-  //       quantity: 12,
-  //       entryPrice: 460,
-  //       pnl: _randomPNL(),
-  //     ),
-  //     Position(
-  //       stockName: "Zomato",
-  //       quantity: 30,
-  //       entryPrice: 140,
-  //       pnl: _randomPNL(),
-  //     ),
-  //   ];
-  // }
+  static Future<List<Position>> getPositions(username) async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    User? user = MockDatabase.getUserByUserName(username);
+    return user?.positions ?? [];
+  }
 
   static double _randomPNL() {
     final rand = Random();

@@ -34,7 +34,7 @@ class MockDatabase {
           openedAt: DateTime.now().subtract(const Duration(days: 1)),
         ),
         Position(
-          stock: StockDB.getBySymbol("HDFC"),
+          stock: StockDB.getBySymbol("LIC"),
           quantity: 7,
           entryPrice: 1580,
           openedAt: DateTime.now().subtract(const Duration(days: 1)),
@@ -64,51 +64,53 @@ class MockDatabase {
       ],
     ),
 
-    // ✅ Second user
-    // User(
-    //   userId: "u456",
-    //   username: "ravi",
-    //   email: "ravi@example.com",
-    //   password: "ravi@123",
-    //   holdings: [
-    //     Holding(
-    //       stock: StockDB.getBySymbol("ITC"),
-    //       lots: [Lot(quantity: 20, pricePerShare: 450)],
-    //       firstAcquiredAt: DateTime.now().subtract(const Duration(days: 3)),
-    //     ),
-    //   ],
-    //   positions: [
-    //     Position(
-    //       stock: StockDB.getBySymbol("ZOMATO"),
-    //       quantity: 15,
-    //       entryPrice: 135,
-    //       openedAt: DateTime.now().subtract(const Duration(days: 2)),
-    //     ),
-    //   ],
-    //   orders: [
-    //     Order(
-    //       id: "ORD2001",
-    //       stock: StockDB.getBySymbol("ITC"),
-    //       type: "buy",
-    //       quantity: 20,
-    //       price: 450,
-    //       status: "completed",
-    //       placedAt: DateTime.now().subtract(const Duration(days: 3)),
-    //     ),
-    //     Order(
-    //       id: "ORD2002",
-    //       stock: StockDB.getBySymbol("ZOMATO"),
-    //       type: "buy",
-    //       quantity: 15,
-    //       price: 135,
-    //       status: "completed",
-    //       placedAt: DateTime.now().subtract(const Duration(days: 2)),
-    //     ),
-    //   ],
-    // ),
+    // Second user
+    User(
+      userId: "u456",
+      username: "ravi",
+      email: "ravi@example.com",
+      password: "ravi@123",
+      holdings: [
+        Holding(
+          stock: StockDB.getBySymbol("ITC"),
+          lots: [Lot(quantity: 20, pricePerShare: 450)],
+          firstAcquiredAt: DateTime.now().subtract(const Duration(days: 3)),
+        ),
+      ],
+      positions: [
+        Position(
+          stock: StockDB.getBySymbol("ZMT"),
+          quantity: 15,
+          entryPrice: 135,
+          openedAt: DateTime.now().subtract(const Duration(days: 2)),
+        ),
+      ],
+      orders: [
+        Order(
+          id: "ORD2001",
+          stock: StockDB.getBySymbol("ITC"),
+          type: "buy",
+          quantity: 20,
+          price: 450,
+          status: "completed",
+          placedAt: DateTime.now().subtract(const Duration(days: 3)),
+          buyPrice: 250,
+        ),
+        Order(
+          id: "ORD2002",
+          stock: StockDB.getBySymbol("ZMT"),
+          type: "buy",
+          quantity: 15,
+          price: 135,
+          status: "completed",
+          placedAt: DateTime.now().subtract(const Duration(days: 2)),
+          buyPrice: 250,
+        ),
+      ],
+    ),
   ];
 
-  static User? getUserById(String username) {
+  static User? getUserByUserName(String username) {
     try {
       return users.firstWhere((user) => user.username == username);
     } catch (e) {

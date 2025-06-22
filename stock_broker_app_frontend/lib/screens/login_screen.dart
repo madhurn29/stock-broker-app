@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:stock_broker_app_frontend/screens/home_screen.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
+import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
+import 'package:stock_broker_app_frontend/state/positions_provider.dart';
 import '../state/app_state.dart';
 import '../constants/app_theme.dart';
 
@@ -47,6 +49,16 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           listen: false,
         ).fetchHoldings(usernameController.text.trim());
+
+        Provider.of<OrderbookProvider>(
+          context,
+          listen: false,
+        ).fetchOrders(usernameController.text.trim());
+
+        Provider.of<PositionsProvider>(
+          context,
+          listen: false,
+        ).fetchPositions(usernameController.text.trim());
 
         Navigator.pushReplacement(
           context,

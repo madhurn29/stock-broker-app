@@ -4,6 +4,8 @@ import 'package:stock_broker_app_frontend/screens/holding_screen.dart';
 import 'package:stock_broker_app_frontend/screens/login_screen.dart';
 import 'package:stock_broker_app_frontend/screens/orderbook_screen.dart';
 import 'package:stock_broker_app_frontend/screens/positions_screen.dart';
+import 'package:stock_broker_app_frontend/state/holding_provider.dart';
+import 'package:stock_broker_app_frontend/widgets/fab.dart';
 import '../state/app_state.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
+    final provider = Provider.of<HoldingsProvider>(context, listen: false);
+    final currentStocks = provider.holdings.map((h) => h.stock).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -62,6 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Positions',
           ),
         ],
+      ),
+
+      floatingActionButton: ExpandableDraggableFAB(
+        currentScreenStocks: currentStocks,
       ),
     );
   }
