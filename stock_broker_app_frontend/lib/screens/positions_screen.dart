@@ -24,11 +24,11 @@ class PositionsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final pos = provider.positions[index];
               return ListTile(
-                title: Text(pos.stockName),
+                title: Text("pos.stockName"),
                 subtitle: Text(
                   "Qty: ${pos.quantity} | Entry: ₹${pos.entryPrice}",
                 ),
-                trailing: Text("PNL: ₹${pos.pnl}"),
+                // trailing: Text("PNL: ₹${pos.pnl}"),
               );
             },
           ),

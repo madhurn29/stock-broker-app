@@ -126,7 +126,7 @@ class _OrderPadBottomSheetState extends State<OrderPadBottomSheet> {
       final qty = int.tryParse(_qtyController.text.trim()) ?? 0;
       setState(() {
         _qty = qty;
-        _totalPrice = qty * widget.stock.avgPrice;
+        _totalPrice = qty * widget.stock.currentPrice;
       });
     });
   }
@@ -200,7 +200,7 @@ class _OrderPadBottomSheetState extends State<OrderPadBottomSheet> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _rowItem("Avg. Price", "₹${stock.avgPrice.toStringAsFixed(2)}"),
+                _rowItem("Avg. Price", "₹${stock.currentPrice.toStringAsFixed(2)}"),
                 _rowItem("Current Qty", "1"),
               ],
             ),

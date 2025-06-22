@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/utils/order_pad.dart';
 import 'package:stock_broker_app_frontend/widgets/pnl_card.dart';
 import '../state/orderbook_provider.dart';
 
@@ -29,7 +28,7 @@ class OrderbookScreen extends StatelessWidget {
                   // showOrderPadModal(context, stock);
                 },
                 child: ListTile(
-                  title: Text(order.stockName),
+                  title: Text("order.stockName"),
                   subtitle: Text(
                     "Qty: ${order.quantity} | Type: ${order.type}",
                   ),
