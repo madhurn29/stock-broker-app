@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/models/order_model.dart';
 import 'package:stock_broker_app_frontend/models/position_model.dart';
@@ -23,8 +21,6 @@ class MockApiService {
     }
 
     return LoginStatus.invalid;
-
-    // simulate server error randomly
   }
 
   static Future<List<Holding>> getHoldings(username) async {
@@ -43,10 +39,5 @@ class MockApiService {
     await Future.delayed(const Duration(milliseconds: 800));
     User? user = MockDatabase.getUserByUserName(username);
     return user?.positions ?? [];
-  }
-
-  static double _randomPNL() {
-    final rand = Random();
-    return (rand.nextDouble() * 500) * (rand.nextBool() ? 1 : -1);
   }
 }

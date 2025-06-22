@@ -92,9 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Text(
+            Text(
               "Select your broker",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
             ),
             Wrap(
               spacing: 10,
@@ -102,9 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   brokers.map((broker) {
                     final isSelected = broker == selectedBroker;
                     return ChoiceChip(
-                      label: Text(broker),
+                      label: Text(
+                        broker,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: isSelected ? Colors.white : AppColors.primary,
+                        ),
+                      ),
                       selected: isSelected,
                       selectedColor: AppColors.primary,
+
                       onSelected: (_) {
                         setState(() => selectedBroker = broker);
                       },
@@ -115,12 +124,27 @@ class _LoginScreenState extends State<LoginScreen> {
             if (selectedBroker != null) ...[
               TextField(
                 controller: usernameController,
-                decoration: const InputDecoration(labelText: "Username"),
+                decoration: const InputDecoration(
+                  labelText: "Username",
+                  labelStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                  ),
+                  // border: OutlineInputBorder(
+                  //   borderSide: BorderSide(color: AppColors.primary),
+                  // ),
+                ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: passwordController,
-                decoration: const InputDecoration(labelText: "Password"),
+                decoration: const InputDecoration(
+                  labelStyle: TextStyle(color: Colors.grey),
+                  labelText: "Password",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                  ),
+                ),
                 obscureText: true,
               ),
               const SizedBox(height: 24),
