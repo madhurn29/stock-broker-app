@@ -28,23 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Add a delay for visual splash effect (optional)
     await Future.delayed(const Duration(seconds: 2));
 
-    if (appState.isLoggedIn) {
-      if (!mounted) return;
-      Provider.of<HoldingsProvider>(
-        context,
-        listen: false,
-      ).fetchHoldings(appState.loggedInUserName);
-
-      Provider.of<OrderbookProvider>(
-        context,
-        listen: false,
-      ).fetchOrders(appState.loggedInUserName);
-
-      Provider.of<PositionsProvider>(
-        context,
-        listen: false,
-      ).fetchPositions(appState.loggedInUserName);
-    }
+    if (!mounted) return;
 
     if (!mounted) return;
 

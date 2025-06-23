@@ -4,10 +4,16 @@ import 'package:stock_broker_app_frontend/constants/app_theme.dart';
 import 'package:stock_broker_app_frontend/models/order_model.dart';
 import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
 import 'package:stock_broker_app_frontend/widgets/orderbook_card.dart';
+import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
 
-class OrderBookScreen extends StatelessWidget {
+class OrderBookScreen extends StatefulWidget {
   const OrderBookScreen({super.key});
 
+  @override
+  State<OrderBookScreen> createState() => _OrderBookScreenState();
+}
+
+class _OrderBookScreenState extends State<OrderBookScreen> {
   double calculateRealizedPNL(List<Order> orders) {
     double pnl = 0.0;
 
@@ -22,13 +28,29 @@ class OrderBookScreen extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<OrderbookProvider>(context, listen: false).fetchOrders();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<OrderbookProvider>(
       builder: (context, provider, child) {
-        final realizedPNL = calculateRealizedPNL(provider.orders);
-        final unrealizedPNL = 1200.0; // mock value
-        return provider.orders.isEmpty
-            ? Container()
+        var realizedPNL = 0.0;
+        var unrealizedPNL = 0.0;
+        if (provider.orders.isNotEmpty) {
+          realizedPNL = calculateRealizedPNL(provider.orders);
+          unrealizedPNL = 1200.0;
+        }
+
+        // mock value
+        return provider.isLoading && provider.orders.isEmpty
+            ? ShimmerScreen()
+            : provider.orders.isEmpty
+            ? Center(child: Text("No data"))
             : Column(
               children: [
                 PNLCard(realizedPNL: realizedPNL, unrealizedPNL: unrealizedPNL),

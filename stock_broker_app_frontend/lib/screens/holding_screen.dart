@@ -1,37 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:stock_broker_app_frontend/constants/app_theme.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import 'package:stock_broker_app_frontend/utils/order_pad.dart';
 import 'package:stock_broker_app_frontend/widgets/holding_card.dart';
+import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
 
-class HoldingsScreen extends StatelessWidget {
+class HoldingsScreen extends StatefulWidget {
   const HoldingsScreen({super.key});
 
   @override
+  State<HoldingsScreen> createState() => _HoldingsScreenState();
+}
+
+class _HoldingsScreenState extends State<HoldingsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<HoldingsProvider>(context, listen: false).fetchHoldings();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<HoldingsProvider>(context);
-    return provider.isLoading
-        ? const Center(child: CircularProgressIndicator())
-        : Column(
-          children: [
-            _HoldingsSummary(provider: provider),
-            Expanded(
-              child: ListView.builder(
-                itemCount: provider.holdings.length,
-                itemBuilder: (context, index) {
-                  final holding = provider.holdings[index];
-                  return GestureDetector(
-                    onTap: () {
-                      showOrderPadBottomSheet(context, holding.stock);
+    return Consumer<HoldingsProvider>(
+      builder: (context, provider, child) {
+        return provider.isLoading && provider.holdings.isEmpty
+            ? ShimmerScreen()
+            : provider.holdings.isEmpty
+            ? Center(child: Text("No data"))
+            : Column(
+              children: [
+                _HoldingsSummary(provider: provider),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: provider.holdings.length,
+                    itemBuilder: (context, index) {
+                      final holding = provider.holdings[index];
+                      return GestureDetector(
+                        onTap: () {
+                          showOrderPadBottomSheet(context, holding.stock);
+                        },
+                        child: HoldingCard(holding: holding),
+                      );
                     },
-                    child: HoldingCard(holding: holding),
-                  );
-                },
-              ),
-            ),
-          ],
-        );
+                  ),
+                ),
+              ],
+            );
+      },
+    );
   }
 }
 
@@ -90,3 +110,7 @@ class _HoldingsSummary extends StatelessWidget {
     );
   }
 }
+
+
+
+

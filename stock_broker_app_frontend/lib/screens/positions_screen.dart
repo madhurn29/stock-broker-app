@@ -4,8 +4,21 @@ import 'package:stock_broker_app_frontend/widgets/pnl_card.dart';
 import 'package:stock_broker_app_frontend/widgets/position_card.dart';
 import '../state/positions_provider.dart';
 
-class PositionsScreen extends StatelessWidget {
+class PositionsScreen extends StatefulWidget {
   const PositionsScreen({super.key});
+
+  @override
+  State<PositionsScreen> createState() => _PositionsScreenState();
+}
+
+class _PositionsScreenState extends State<PositionsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<PositionsProvider>(context, listen: false).fetchPositions();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

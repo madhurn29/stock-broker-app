@@ -1,42 +1,8 @@
-// import 'package:flutter/material.dart';
-// import 'package:stock_broker_app_frontend/models/stock_model.dart';
-// import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
-
-// class HoldingsProvider extends ChangeNotifier {
-//   List<Stock> holdings = [];
-//   bool isLoading = true;
-
-//   HoldingsProvider() {
-//     loadHoldings();
-//   }
-
-//   Future<void> loadHoldings() async {
-//     isLoading = true;
-//     notifyListeners();
-//     holdings = await MockApiService.getHoldings();
-//     isLoading = false;
-//     notifyListeners();
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_broker_app_frontend/constants/strings.dart';
 import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
-
-// class HoldingsProvider with ChangeNotifier {
-//   List<Holding> _holdings = [];
-
-//   List<Holding> get holdings => _holdings;
-
-//   HoldingsProvider() {
-//     fetchHoldings();
-//   }
-
-//   Future<void> fetchHoldings() async {
-//     _holdings = await MockApiService.getHoldings();
-//     notifyListeners();
-//   }
-// }
 
 class HoldingsProvider with ChangeNotifier {
   List<Holding> _holdings = [];
@@ -46,11 +12,12 @@ class HoldingsProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> fetchHoldings(username) async {
+  Future<void> fetchHoldings() async {
     _isLoading = true;
     notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
 
-    _holdings = await MockApiService.getHoldings(username);
+    _holdings = await MockApiService.getHoldings(prefs.getString(USERNAME));
 
     _isLoading = false;
     notifyListeners();

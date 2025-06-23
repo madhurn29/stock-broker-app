@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_broker_app_frontend/constants/strings.dart';
 import 'package:stock_broker_app_frontend/models/position_model.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
 
@@ -8,10 +10,12 @@ class PositionsProvider extends ChangeNotifier {
 
   List<Position> get position => _positions;
 
-  Future<void> fetchPositions(username) async {
+  Future<void> fetchPositions() async {
     isLoading = true;
     notifyListeners();
-    _positions = await MockApiService.getPositions(username);
+
+    final prefs = await SharedPreferences.getInstance();
+    _positions = await MockApiService.getPositions(prefs.getString(USERNAME));
     isLoading = false;
     notifyListeners();
   }

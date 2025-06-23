@@ -53,21 +53,6 @@ class _LoginScreenState extends State<LoginScreen> {
           listen: false,
         ).login(usernameController.text.trim(), selectedBroker!);
 
-        Provider.of<HoldingsProvider>(
-          context,
-          listen: false,
-        ).fetchHoldings(usernameController.text.trim());
-
-        Provider.of<OrderbookProvider>(
-          context,
-          listen: false,
-        ).fetchOrders(usernameController.text.trim());
-
-        Provider.of<PositionsProvider>(
-          context,
-          listen: false,
-        ).fetchPositions(usernameController.text.trim());
-
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
