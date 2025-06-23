@@ -14,7 +14,7 @@ class ExpandableDraggableFAB extends StatefulWidget {
 
 class _ExpandableDraggableFABState extends State<ExpandableDraggableFAB> {
   bool isExpanded = false;
-  Offset position = const Offset(20, 500); // starting position
+  Offset position = const Offset(20, 600); // starting position
 
   void _openPad(String action) {
     final topStock =

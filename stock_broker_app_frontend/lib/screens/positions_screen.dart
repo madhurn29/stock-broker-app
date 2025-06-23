@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stock_broker_app_frontend/widgets/pnl_card.dart';
 import 'package:stock_broker_app_frontend/widgets/position_card.dart';
+import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
 import '../state/positions_provider.dart';
 
 class PositionsScreen extends StatefulWidget {
@@ -24,25 +25,25 @@ class _PositionsScreenState extends State<PositionsScreen> {
   Widget build(BuildContext context) {
     return Consumer<PositionsProvider>(
       builder: (context, provider, child) {
-        if (provider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        return Column(
-          children: [
-            const PNLCard(unrealized: 800, realized: 450),
-            const Divider(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: provider.position.length,
-                itemBuilder: (context, index) {
-                  final pos = provider.position[index];
-                  return PositionCard(position: pos);
-                },
-              ),
-            ),
-          ],
-        );
+        return provider.isLoading && provider.position.isEmpty
+            ? ShimmerScreen()
+            : provider.position.isEmpty
+            ? Center(child: Text("No data"))
+            : Column(
+              children: [
+                const PNLCard(unrealized: 800, realized: 450),
+                const Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: provider.position.length,
+                    itemBuilder: (context, index) {
+                      final pos = provider.position[index];
+                      return PositionCard(position: pos);
+                    },
+                  ),
+                ),
+              ],
+            );
       },
     );
   }
