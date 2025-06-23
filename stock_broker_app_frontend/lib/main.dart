@@ -6,8 +6,11 @@ import 'package:stock_broker_app_frontend/state/app_state.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
 import 'package:stock_broker_app_frontend/state/positions_provider.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
