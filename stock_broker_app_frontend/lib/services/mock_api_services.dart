@@ -2,7 +2,7 @@ import 'package:stock_broker_app_frontend/models/holding_model.dart';
 import 'package:stock_broker_app_frontend/models/order_model.dart';
 import 'package:stock_broker_app_frontend/models/position_model.dart';
 import 'package:stock_broker_app_frontend/models/user_model.dart';
-import 'package:stock_broker_app_frontend/services/user_date_db.dart';
+import 'package:stock_broker_app_frontend/services/user_data_db.dart';
 
 enum LoginStatus { success, invalid, error }
 

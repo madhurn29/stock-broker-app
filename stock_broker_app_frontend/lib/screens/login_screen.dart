@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:stock_broker_app_frontend/models/broker_model.dart';
 import 'package:stock_broker_app_frontend/screens/home_screen.dart';
 import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
@@ -21,7 +23,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   bool isLoading = false;
 
-  final brokers = ["Zerodha", "Upstox", "Groww", "Angel One"];
+  final List<Broker> brokers = [
+    Broker(title: "Zerodha", imagePath: "assets/brokers/kite.svg"),
+    Broker(title: "Upstox", imagePath: "assets/brokers/upstox.svg"),
+    Broker(title: "Groww", imagePath: "assets/brokers/groww.svg"),
+    Broker(title: "Angel One", imagePath: "assets/brokers/angel_one.svg"),
+    Broker(title: "HDFC", imagePath: "assets/brokers/hdfc.svg"),
+  ];
 
   void handleLogin() async {
     if (selectedBroker == null) return;
@@ -98,27 +106,59 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
               ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
             ),
-            Wrap(
-              spacing: 10,
-              children:
-                  brokers.map((broker) {
-                    final isSelected = broker == selectedBroker;
-                    return ChoiceChip(
-                      label: Text(
-                        broker,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: isSelected ? Colors.white : AppColors.primary,
-                        ),
-                      ),
-                      selected: isSelected,
-                      selectedColor: AppColors.primary,
+            SizedBox(height: 10),
 
-                      onSelected: (_) {
-                        setState(() => selectedBroker = broker);
-                      },
-                    );
-                  }).toList(),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: brokers.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1,
+              ),
+              itemBuilder: (context, index) {
+                final broker = brokers[index];
+                final isSelected = broker.title == selectedBroker;
+
+                return GestureDetector(
+                  onTap: () => setState(() => selectedBroker = broker.title),
+                  child: Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side:
+                          isSelected
+                              ? BorderSide(color: AppColors.primary, width: 2)
+                              : BorderSide.none,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Broker logo
+                        SvgPicture.asset(
+                          broker.imagePath,
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(height: 8),
+                        // Broker name
+                        Text(
+                          broker.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color:
+                                isSelected ? AppColors.primary : Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 24),
             if (selectedBroker != null) ...[

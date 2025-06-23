@@ -8,9 +8,9 @@ class MockDatabase {
   static final List<User> users = [
     User(
       userId: "u123",
-      username: "madhur",
-      email: "madhur@example.com",
-      password: "madhur@123",
+      username: "user1",
+      email: "user@example.com",
+      password: "user@123",
       holdings: [
         Holding(
           stock: StockDB.getBySymbol("TCS"),
@@ -67,9 +67,9 @@ class MockDatabase {
     // Second user
     User(
       userId: "u456",
-      username: "ravi",
-      email: "ravi@example.com",
-      password: "ravi@123",
+      username: "user2",
+      email: "user2@example.com",
+      password: "user2@123",
       holdings: [
         Holding(
           stock: StockDB.getBySymbol("ITC"),
