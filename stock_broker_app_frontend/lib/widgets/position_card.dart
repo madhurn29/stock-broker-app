@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stock_broker_app_frontend/constants/app_theme.dart';
-import 'package:stock_broker_app_frontend/models/position_model.dart';
-import 'package:stock_broker_app_frontend/widgets/stock_symbol_circle.dart';
+import 'package:stockbasket/constants/app_theme.dart';
+import 'package:stockbasket/models/position_model.dart';
+import 'package:stockbasket/widgets/stock_symbol_circle.dart';
 
 class PositionCard extends StatelessWidget {
   final Position position;

@@ -1,4 +1,4 @@
-# stock_broker_app_frontend
+# stockbasket
 
 A new Flutter project.
 

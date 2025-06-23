@@ -1,4 +1,4 @@
-package com.example.stock_broker_app_frontend
+package com.example.stockbasket
 
 import io.flutter.embedding.android.FlutterActivity
 

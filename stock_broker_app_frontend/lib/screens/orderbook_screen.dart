@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/constants/app_theme.dart';
-import 'package:stock_broker_app_frontend/models/order_model.dart';
-import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
-import 'package:stock_broker_app_frontend/widgets/orderbook_card.dart';
-import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
+import 'package:stockbasket/constants/app_theme.dart';
+import 'package:stockbasket/models/order_model.dart';
+import 'package:stockbasket/state/orderbook_provider.dart';
+import 'package:stockbasket/widgets/orderbook_card.dart';
+import 'package:stockbasket/widgets/shimmer_screen.dart';
 
 class OrderBookScreen extends StatefulWidget {
   const OrderBookScreen({super.key});

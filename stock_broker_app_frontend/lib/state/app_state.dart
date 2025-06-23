@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stock_broker_app_frontend/constants/strings.dart';
-import 'package:stock_broker_app_frontend/utils/helper.dart';
+import 'package:stockbasket/constants/strings.dart';
+import 'package:stockbasket/utils/helper.dart';
 
 class AppState extends ChangeNotifier {
   String? loggedInUserName;

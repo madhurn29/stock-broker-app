@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/constants/app_theme.dart';
-import 'package:stock_broker_app_frontend/screens/splash_screen.dart';
-import 'package:stock_broker_app_frontend/state/app_state.dart';
-import 'package:stock_broker_app_frontend/state/holding_provider.dart';
-import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
-import 'package:stock_broker_app_frontend/state/positions_provider.dart';
+import 'package:stockbasket/constants/app_theme.dart';
+import 'package:stockbasket/screens/splash_screen.dart';
+import 'package:stockbasket/state/app_state.dart';
+import 'package:stockbasket/state/holding_provider.dart';
+import 'package:stockbasket/state/orderbook_provider.dart';
+import 'package:stockbasket/state/positions_provider.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {

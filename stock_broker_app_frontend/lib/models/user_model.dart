@@ -1,6 +1,6 @@
-import 'package:stock_broker_app_frontend/models/holding_model.dart';
-import 'package:stock_broker_app_frontend/models/order_model.dart';
-import 'package:stock_broker_app_frontend/models/position_model.dart';
+import 'package:stockbasket/models/holding_model.dart';
+import 'package:stockbasket/models/order_model.dart';
+import 'package:stockbasket/models/position_model.dart';
 
 class User {
   final String userId;

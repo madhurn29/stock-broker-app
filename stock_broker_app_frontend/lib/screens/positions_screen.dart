@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/widgets/pnl_card.dart';
-import 'package:stock_broker_app_frontend/widgets/position_card.dart';
-import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
+import 'package:stockbasket/widgets/pnl_card.dart';
+import 'package:stockbasket/widgets/position_card.dart';
+import 'package:stockbasket/widgets/shimmer_screen.dart';
 import '../state/positions_provider.dart';
 
 class PositionsScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
-import 'package:stock_broker_app_frontend/models/holding_model.dart';
-import 'package:stock_broker_app_frontend/models/order_model.dart';
-import 'package:stock_broker_app_frontend/models/position_model.dart';
-import 'package:stock_broker_app_frontend/models/user_model.dart';
-import 'package:stock_broker_app_frontend/services/user_data_db.dart';
+import 'package:stockbasket/models/holding_model.dart';
+import 'package:stockbasket/models/order_model.dart';
+import 'package:stockbasket/models/position_model.dart';
+import 'package:stockbasket/models/user_model.dart';
+import 'package:stockbasket/services/user_data_db.dart';
 
 enum LoginStatus { success, invalid, error }
 

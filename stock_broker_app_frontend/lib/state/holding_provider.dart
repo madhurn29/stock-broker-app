@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stock_broker_app_frontend/constants/strings.dart';
-import 'package:stock_broker_app_frontend/models/holding_model.dart';
-import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
+import 'package:stockbasket/constants/strings.dart';
+import 'package:stockbasket/models/holding_model.dart';
+import 'package:stockbasket/services/mock_api_services.dart';
 
 class HoldingsProvider with ChangeNotifier {
   List<Holding> _holdings = [];

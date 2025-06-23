@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stock_broker_app_frontend/models/stock_model.dart';
-import 'package:stock_broker_app_frontend/services/stock_db.dart';
-import 'package:stock_broker_app_frontend/utils/order_pad.dart';
+import 'package:stockbasket/models/stock_model.dart';
+import 'package:stockbasket/services/stock_db.dart';
+import 'package:stockbasket/utils/order_pad.dart';
 
 class ExpandableDraggableFAB extends StatefulWidget {
   final List<Stock> currentScreenStocks;

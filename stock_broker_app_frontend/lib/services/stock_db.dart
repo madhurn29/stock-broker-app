@@ -1,4 +1,4 @@
-import 'package:stock_broker_app_frontend/models/stock_model.dart';
+import 'package:stockbasket/models/stock_model.dart';
 
 class StockDB {
   static final List<Stock> _allStocks = [

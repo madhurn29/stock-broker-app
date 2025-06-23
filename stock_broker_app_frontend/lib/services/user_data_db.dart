@@ -1,8 +1,8 @@
-import 'package:stock_broker_app_frontend/models/holding_model.dart';
-import 'package:stock_broker_app_frontend/models/order_model.dart';
-import 'package:stock_broker_app_frontend/models/position_model.dart';
-import 'package:stock_broker_app_frontend/models/user_model.dart';
-import 'package:stock_broker_app_frontend/services/stock_db.dart';
+import 'package:stockbasket/models/holding_model.dart';
+import 'package:stockbasket/models/order_model.dart';
+import 'package:stockbasket/models/position_model.dart';
+import 'package:stockbasket/models/user_model.dart';
+import 'package:stockbasket/services/stock_db.dart';
 
 class MockDatabase {
   static final List<User> users = [

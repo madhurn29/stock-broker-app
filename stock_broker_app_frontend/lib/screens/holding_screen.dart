@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/constants/app_theme.dart';
-import 'package:stock_broker_app_frontend/state/holding_provider.dart';
-import 'package:stock_broker_app_frontend/utils/order_pad.dart';
-import 'package:stock_broker_app_frontend/widgets/holding_card.dart';
-import 'package:stock_broker_app_frontend/widgets/shimmer_screen.dart';
+import 'package:stockbasket/constants/app_theme.dart';
+import 'package:stockbasket/state/holding_provider.dart';
+import 'package:stockbasket/utils/order_pad.dart';
+import 'package:stockbasket/widgets/holding_card.dart';
+import 'package:stockbasket/widgets/shimmer_screen.dart';
 
 class HoldingsScreen extends StatefulWidget {
   const HoldingsScreen({super.key});
@@ -109,7 +109,3 @@ class _HoldingsSummary extends StatelessWidget {
     );
   }
 }
-
-
-
-

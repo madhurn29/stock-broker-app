@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/models/broker_model.dart';
-import 'package:stock_broker_app_frontend/screens/home_screen.dart';
-import 'package:stock_broker_app_frontend/services/mock_api_services.dart';
+import 'package:stockbasket/models/broker_model.dart';
+import 'package:stockbasket/screens/home_screen.dart';
+import 'package:stockbasket/services/mock_api_services.dart';
+
 import '../state/app_state.dart';
 import '../constants/app_theme.dart';
 

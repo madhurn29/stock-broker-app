@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stock_broker_app_frontend/screens/holding_screen.dart';
-import 'package:stock_broker_app_frontend/screens/login_screen.dart';
-import 'package:stock_broker_app_frontend/screens/orderbook_screen.dart';
-import 'package:stock_broker_app_frontend/screens/positions_screen.dart';
-import 'package:stock_broker_app_frontend/state/holding_provider.dart';
-import 'package:stock_broker_app_frontend/state/orderbook_provider.dart';
-import 'package:stock_broker_app_frontend/state/positions_provider.dart';
-import 'package:stock_broker_app_frontend/widgets/fab.dart';
+import 'package:stockbasket/screens/holding_screen.dart';
+import 'package:stockbasket/screens/login_screen.dart';
+import 'package:stockbasket/screens/orderbook_screen.dart';
+import 'package:stockbasket/screens/positions_screen.dart';
+import 'package:stockbasket/state/holding_provider.dart';
+import 'package:stockbasket/state/orderbook_provider.dart';
+import 'package:stockbasket/state/positions_provider.dart';
+import 'package:stockbasket/widgets/fab.dart';
 import '../state/app_state.dart';
 
 class HomeScreen extends StatefulWidget {

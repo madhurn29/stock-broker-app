@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:stock_broker_app_frontend/models/stock_model.dart';
-import 'package:stock_broker_app_frontend/widgets/order_pad_bottom_sheet.dart';
+import 'package:stockbasket/models/stock_model.dart';
+import 'package:stockbasket/widgets/order_pad_bottom_sheet.dart';
 
 void showOrderPadBottomSheet(BuildContext context, Stock stock) {
   showModalBottomSheet(

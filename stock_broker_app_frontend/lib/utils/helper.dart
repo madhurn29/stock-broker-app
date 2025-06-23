@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stock_broker_app_frontend/constants/strings.dart';
+import 'package:stockbasket/constants/strings.dart';
 
 class UserDetailsProvider {
   setUserLogin(String userName, String brokerName) async {

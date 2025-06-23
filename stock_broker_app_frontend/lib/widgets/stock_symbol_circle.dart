@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stock_broker_app_frontend/constants/app_theme.dart';
+import 'package:stockbasket/constants/app_theme.dart';
 
 class StockSymbolCircle extends StatelessWidget {
   const StockSymbolCircle({super.key, required this.symbol});
