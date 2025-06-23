@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stockbasket/constants/app_theme.dart';
+import 'package:stockbasket/screens/splash_screen.dart';
+import 'package:stockbasket/state/app_state.dart';
+import 'package:stockbasket/state/holding_provider.dart';
+import 'package:stockbasket/state/orderbook_provider.dart';
+import 'package:stockbasket/state/positions_provider.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -10,36 +20,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppState>(create: (context) => AppState()),
+        ChangeNotifierProvider(create: (_) => HoldingsProvider()),
+        ChangeNotifierProvider(create: (_) => OrderbookProvider()),
+        ChangeNotifierProvider(create: (_) => PositionsProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Stock Broker App',
+        theme: appTheme,
+        home: SplashScreen(),
       ),
-      home: const MyHomePage(title: ''),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Container(),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

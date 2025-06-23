@@ -4,7 +4,7 @@ class AppColors {
   static const Color primary = Color(0xFF3F51B5); // Indigo
   static const Color secondary = Color(0xFF009688); // Teal
   static const Color background = Color(0xFFF5F5F5); // Light gray
-  static const Color textPrimary = Color(0xFF212121);
+  static const Color textPrimary = Color(0xff1E1E1E);
   static const Color textSecondary = Color(0xFF757575);
 
   static const Color buyGreen = Color(0xFF4CAF50);
@@ -25,9 +25,12 @@ final ThemeData appTheme = ThemeData(
     elevation: 2,
   ),
   textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: AppColors.textPrimary, fontSize: 16),
-    bodyMedium: TextStyle(color: AppColors.textSecondary),
-    titleLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    titleLarge: TextStyle(color: AppColors.primary, fontSize: 22),
+    titleMedium: TextStyle(color: AppColors.primary, fontSize: 20),
+    titleSmall: TextStyle(color: AppColors.primary, fontSize: 18),
+    bodyLarge: TextStyle(color: AppColors.primary, fontSize: 16),
+    bodyMedium: TextStyle(color: AppColors.primary, fontSize: 14),
+    bodySmall: TextStyle(color: AppColors.primary, fontSize: 12),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: AppColors.primary,
