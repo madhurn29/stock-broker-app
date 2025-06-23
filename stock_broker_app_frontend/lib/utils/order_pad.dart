@@ -21,7 +21,11 @@ void showOrderPadBottomSheet(BuildContext context, Stock stock) {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            child: OrderPadBottomSheet(stock: stock,),
+            child: SafeArea(
+              top: false,
+              bottom: true,
+              child: OrderPadBottomSheet(stock: stock),
+            ),
           ),
         ),
   );

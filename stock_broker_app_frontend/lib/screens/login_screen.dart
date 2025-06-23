@@ -130,9 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primary),
                   ),
-                  // border: OutlineInputBorder(
-                  //   borderSide: BorderSide(color: AppColors.primary),
-                  // ),
                 ),
               ),
               const SizedBox(height: 12),
