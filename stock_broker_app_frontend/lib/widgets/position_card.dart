@@ -117,20 +117,6 @@ class PositionCard extends StatelessWidget {
     );
   }
 
-  Widget _stockSymbolCircle(String symbol) {
-    return CircleAvatar(
-      radius: 16,
-      backgroundColor: Colors.blueGrey.shade50,
-      child: Text(
-        symbol.characters.first.toUpperCase(),
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.blueGrey,
-        ),
-      ),
-    );
-  }
-
   String _friendlyDate(DateTime date) {
     final now = DateTime.now();
     final diff = now.difference(date);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:stock_broker_app_frontend/constants/app_theme.dart';
 import 'package:stock_broker_app_frontend/state/holding_provider.dart';
 import 'package:stock_broker_app_frontend/utils/order_pad.dart';
